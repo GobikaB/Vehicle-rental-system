@@ -81,11 +81,9 @@ export class VehicleService {
     const vehicle = this.vehicles.find(
       (v) => v.id == data.vehicleId
     );
-
     if (!vehicle) {
-      throw new NotFoundException('Vehicle not returned');
+        throw new NotFoundException('Vehicle not returned');
     }
-
     vehicle.availability = true;
     vehicle.rentedBy = undefined;
 
