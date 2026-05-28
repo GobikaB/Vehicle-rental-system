@@ -6,4 +6,8 @@ export interface Vehicle{
     rentPerDay:number;
     availability:boolean;
     rentedBy?:string| undefined;
+
+    phone?:string;
+    rentedAt?:Date;
+    returnedAt?:Date;
 }

@@ -52,6 +52,19 @@ export class VehicleService {
     if (!vehicle.availability) {
       throw new BadRequestException('Vehicle already rented',);
     }
+    const rentTime = new Date();
+
+    const returnTime = new Date(rentTime.getTime() +data.hours * 60 * 60 * 1000);
+
+    vehicle.phone = data.phone;
+    vehicle.rentedAt = rentTime;
+    vehicle.returnedAt = returnTime;
+    // Remainder
+    const reminderTime = new Date(returnTime.getTime() -60 * 60 * 1000);
+    const delay =reminderTime.getTime() - Date.now();
+    setTimeout(() => {
+        console.log(`Reminder SMS sent to ${data.phone}`);
+    }, delay);
 
     vehicle.availability = false;
     vehicle.rentedBy = data.customerName;
